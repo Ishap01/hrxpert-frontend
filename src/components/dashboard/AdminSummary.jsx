@@ -19,7 +19,7 @@ const AdminSummary = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/dashboard/summary')
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard/summary`)
         setSummary(response.data)
       } catch (error) {
         console.log(error)

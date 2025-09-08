@@ -50,7 +50,7 @@ export const LeaveButtons = ({ Id }) => {
         navigate(`/admin-dashboard/leaves/${id}`);
     };
     return (
-        <button className="px-2 py-1 bg-teal-500 rounded text-white hover:bg-teal-600" onClick={() => handleView(Id)}>
+        <button className="w-full sm:w-auto px-3 py-2 bg-teal-500 rounded text-white text-sm sm:text-base hover:bg-teal-600 transition" onClick={() => handleView(Id)}>
             View
         </button>
     )

@@ -26,7 +26,7 @@ useEffect(() => {
     const fetchEmployee = async()=>{
      
       try{
-        const response = await axios.get(`http://localhost:5000/api/employee/${id}`,{
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/employee/${id}`,{
           headers:{
 
           }
@@ -62,7 +62,7 @@ useEffect(() => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/employee/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/employee/${id}`,
         employee
       );
 

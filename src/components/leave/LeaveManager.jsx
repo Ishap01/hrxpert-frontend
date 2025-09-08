@@ -9,7 +9,7 @@ const LeaveManager = () => {
   const [filteredLeaves, setFilteredLeaves] = useState(null);
   const fetchLeaves = async () => {
   try {
-        const response = await axios.get('http://localhost:5000/api/leave',{
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/leave`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

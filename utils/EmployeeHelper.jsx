@@ -40,7 +40,7 @@ export const columns = [
 // Fetch departments
 export const fetchDepartments = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/api/department')
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/department`)
     if (response.data.success) {
       return response.data.departments
     }
@@ -52,7 +52,7 @@ export const fetchDepartments = async () => {
 export const getEmployees = async (id) => {
   let employees
   try {
-    const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`)
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/employee/department/${id}`)
     if (response.data.success) {
       return response.data.employees
     }
@@ -65,20 +65,20 @@ export const EmployeeButton = ({ _id }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex space-x-3">
-      <button className="px-4 py-2 mx-3 bg-teal-300 text-white text-sm rounded"
+    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
+      <button className="w-full sm:w-auto px-4 py-2 bg-teal-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/${_id}`)}>
         View
       </button>
-      <button className="px-4 py-2 mx-3 bg-red-400 text-white text-sm rounded"
+      <button className="w-full sm:w-auto px-4 py-2 bg-red-400 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/edit/${_id}`)}>
         Edit
       </button>
-      <button className="px-4 py-2 mx-3 bg-yellow-300 text-white text-sm rounded"
+      <button className="w-full sm:w-auto px-4 py-2 bg-yellow-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/salary/${_id}`)}>
         Salary
       </button>
-      <button className="px-4 py-2 mx-3 bg-blue-300 text-white text-sm rounded"
+      <button className="w-full sm:w-auto px-4 py-2 bg-blue-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/leaves/${_id}`)}>
         Leave
       </button>

@@ -11,7 +11,7 @@ const Payslip = () => {
   const handleSearch = async () => {
     try {
        
-      const res = await axios.get(`http://localhost:5000/api/salary/my-payslip/${user.employeeId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/salary/my-payslip/${user.employeeId}`);
       if (res.data && res.data.success && res.data.salary) {
         setSalaryData(res.data.salary);
         console.log(salaryData)
@@ -29,7 +29,7 @@ const Payslip = () => {
  
   const sendNotification = async () => {
     try {
-      await axios.post("http://localhost:5000/api/notification/send", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/notification/send`, {
         employeeId: salaryData.employeeId.employeeId,
        
         message: `Payslip downloaded by  ${salaryData.employeeId.employeeId}`
@@ -54,24 +54,24 @@ const Payslip = () => {
   };
 
   return (
-    <div className="min-h-screen bg-teal-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-8 space-y-6">
-        <h2 className="text-3xl font-bold text-teal-700 text-center mb-6">Payslip Download </h2>
+    <div className="min-h-screen bg-teal-50 flex items-center justify-center px-3 sm:px-4">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-6 sm:p-8 space-y-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-teal-700 text-center mb-4 sm:mb-6">Payslip Download </h2>
 
-        <div className="space-y-4 text-center">
+        <div className="space-y-3 text-center">
           
           <button
             onClick={handleSearch}
-            className="bg-teal-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-teal-700 transition duration-200"
+            className="w-full sm:w-auto bg-teal-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold hover:bg-teal-700 transition duration-200"
           >
             Find Current Payslip
           </button>
         </div>
 
         {salaryData && (
-          <div className="p-6 rounded-lg shadow-inner space-y-3">
-            <h3 className="text-xl font-semibold text-teal-800">Payslip Details</h3>
-            <div className="grid grid-cols-2 gap-4 text-gray-800">
+          <div className="p-4 sm:p-6 rounded-lg shadow-inner space-y-3">
+            <h3 className="text-lg sm:text-xl font-semibold text-teal-800">Payslip Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-gray-800">
               <p><strong>Employee ID:</strong> {salaryData.employeeId.employeeId}</p>
               <p><strong>Basic Salary:</strong> ₹{salaryData.basicSalary}</p>
               <p><strong>Allowances:</strong> ₹{salaryData.allowances}</p>
@@ -79,10 +79,10 @@ const Payslip = () => {
               <p><strong>Pay Date:</strong> {new Date(salaryData.payDate).toLocaleDateString()}</p>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-3 sm:pt-4 text-center sm:text-left">
               <button
                 onClick={generatePDF}
-                className="bg-teal-700 text-white px-6 py-2 rounded hover:bg-teal-800 transition"
+                className="w-full sm:w-auto bg-teal-700 text-white px-4 sm:px-6 py-2 rounded hover:bg-teal-800 transition"
               >
                 Download PDF
               </button>
@@ -91,7 +91,7 @@ const Payslip = () => {
         )}
 
         {message && (
-          <div className="mt-4 text-center text-red-600 font-medium">
+          <div className="mt-4 sm:mt-4 text-center text-red-600 font-medium text-sm sm:text-base">
             {message}
           </div>
         )}

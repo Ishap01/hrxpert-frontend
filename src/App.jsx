@@ -36,11 +36,15 @@ import MyProfile from './components/employeeDashboard/MyProfile';
 // Admin layout component directly in this file
 const AdminLayout = () => {
   return (
-    <div style={{ display: 'flex' }}>
-      <AdminSidebar />
-      <div style={{ marginLeft: '16rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      
+      <div className="w-full md:w-64">
+        <AdminSidebar />
+      </div>
+
+     <div className="flex-1 flex flex-col">
       <AdminNavbar/>
-     <div style={{padding: '0 20px 20px 20px', flex: 1 }}>
+      <div className="p-4 md:p-6 flex-1 overflow-auto">
         <Outlet />
       </div>
      </div>

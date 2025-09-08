@@ -18,7 +18,7 @@ const handleChange  = (e)=>{
 const handleSubmit =async(e)=>{
   e.preventDefault();
   try{
-      const response = await axios.post('http://localhost:5000/api/department/add',department,{
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/department/add`,department,{
         headers:{
           // Authorization : `Bearer${localstorage.getItem('token)}`
         }

@@ -9,7 +9,7 @@ const View = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/employee/${id}`)
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/employee/${id}`)
         if (response.data.success) {
           console.log(response.data.employee)
           setEmployee(response.data.employee)
@@ -34,7 +34,7 @@ const View = () => {
             <div className="flex justify-center">
               <div className="bg-gray-50 p-4 rounded-full shadow-inner border w-fit">
                 <img
-                  src={`http://localhost:5000/${employee.userId.profileimage}`}
+                  src={`${import.meta.env.VITE_API_URL}/${employee.userId.profileimage}`}
                   alt="profile"
                   className="w-40 h-40 object-cover rounded-full border-2 border-teal-500"
                 />

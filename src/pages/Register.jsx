@@ -22,7 +22,7 @@ const Register = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await axios.post('http://localhost:5000/api/auth/register', values);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, values);
       alert("Registration successful! Redirecting to login...");
       resetForm();
       navigate('/login');
@@ -35,21 +35,21 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-teal-400 to-cyan-300 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-teal-400 to-cyan-300 px-4 py-6 sm:py-8">
       <div className="bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 w-full max-w-5xl overflow-hidden">
         
         {/* Left Side - Illustration or Message */}
-        <div className="hidden md:flex items-center justify-center bg-gradient-to-tr from-teal-500 to-cyan-400 p-10">
-          <div className="text-white text-center space-y-4">
-            <h2 className="text-4xl font-bold">Welcome to HR Xpert</h2>
-            <p className="text-lg">Join us and simplify your employee management!</p>
-            <img src={hr11} alt="Register" className="w-80 h-80 mx-auto mt-4 bg-transparent" />
+        <div className="hidden md:flex items-center justify-center bg-gradient-to-tr from-teal-500 to-cyan-400 p-6 md:p-10">
+          <div className="text-white text-center space-y-3 md:space-y-4">
+            <h2 className="text-2xl md:text-4xl font-bold">Welcome to HR Xpert</h2>
+            <p className="text-sm md:text-lg">Join us and simplify your employee management!</p>
+            <img src={hr11} alt="Register" className="max-w-xs md:max-w-md mx-auto mt-4 bg-transparent" />
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <div className="p-8 md:p-12">
-          <h2 className="text-3xl font-extrabold text-teal-600 mb-6">Create Your Account</h2>
+        <div className="p-6 sm:p-8 md:p-12">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-teal-600 mb-6">Create Your Account</h2>
 
           <Formik
             initialValues={{ name: '', email: '', password: '', role: '' }}
@@ -63,7 +63,7 @@ const Register = () => {
                 <UserIcon className="h-5 w-5 absolute left-3 top-3.5 text-gray-400" />
                 <Field
                   name="name"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm sm:text-base"
                   placeholder="Full Name"
                 />
                 <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
@@ -111,7 +111,7 @@ const Register = () => {
               {/* Register Button */}
               <button
                 type="submit"
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-xl transition duration-300 ease-in-out transform hover:scale-[1.02] shadow"
+                className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-xl transition duration-300 ease-in-out transform hover:scale-[1.02] shadow text-sm sm:text-base"
               >
                 Register
               </button>
@@ -119,7 +119,7 @@ const Register = () => {
           </Formik>
 
           {/* Login Link */}
-          <p className="text-center text-sm mt-6 text-gray-600">
+          <p className="text-center text-xs sm:text-sm mt-6 text-gray-600">
             Already have an account?{' '}
             <Link to="/login" className="text-teal-600 font-medium hover:underline">
               Log in

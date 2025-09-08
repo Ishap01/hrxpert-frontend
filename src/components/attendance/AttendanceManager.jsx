@@ -15,7 +15,7 @@ const AttendanceManager = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/employees");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/employees`);
         if (res.data && Array.isArray(res.data.employees)) {
           // Map to required fields
           const simplified = res.data.employees.map(emp => ({
@@ -36,7 +36,7 @@ const AttendanceManager = () => {
 
   const handleMark = async (employeeId, status) => {
     try {
-      await axios.post("http://localhost:5000/api/attendance", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/attendance`, {
         employeeId,
         date,
         status
@@ -55,7 +55,7 @@ const AttendanceManager = () => {
     if (!showReport) {
       setLoadingReport(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/attendance?date=${date}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/attendance?date=${date}`);
         setReportData(res.data);
       } catch (err) {
         console.error("❌ Error fetching attendance report:", err);

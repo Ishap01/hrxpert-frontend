@@ -38,7 +38,7 @@ useEffect(() => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/salary/add`,
+        `${import.meta.env.VITE_API_URL}/api/salary/add`,
         salary
       );
 
@@ -161,7 +161,7 @@ useEffect(() => {
         {/* Pay Date*/}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Deduction
+              Pay Date
             </label>
             <input
              

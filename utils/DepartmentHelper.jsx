@@ -26,7 +26,7 @@ export const DepartmentButton=({_id,onDepartmentDelete})=>{
          if(confirm){
      try{
        
-        const response = await axios.delete(`http://localhost:5000/api/department/${id}`,{
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/department/${id}`,{
           headers:{
 
           }
@@ -43,11 +43,11 @@ export const DepartmentButton=({_id,onDepartmentDelete})=>{
 }
     }
     return(
-        <div className="flex space-x-3">
-            <button className="px-4 py-2 mx-3 bg-teal-400 text-white rounded" 
+        <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-2 sm:space-y-0">
+            <button className="w-full sm:w-auto px-4 py-2 bg-teal-400 text-white rounded text-sm sm:text-base" 
             onClick={()=>navigate(`/admin-dashboard/department/${_id}`)}
             >Edit</button>
-            <button className="px-4 py-2 bg-red-400 text-white rounded" onClick={()=>handleDelete(_id)}>Delete</button>
+            <button className="w-full sm:w-auto px-4 py-2 bg-red-400 text-white rounded text-sm sm:text-base" onClick={()=>handleDelete(_id)}>Delete</button>
         </div>
     )
 }

@@ -20,7 +20,7 @@ const EmployeeNotifications = () => {
 
     const fetchNotifications = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/notification/employee/${employeeId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/notification/employee/${employeeId}`);
         setNotifications(res.data);
       } catch (error) {
         console.error("Error fetching notifications", error);

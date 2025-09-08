@@ -4,11 +4,11 @@ import Sidebar from "../components/employeeDashboard/Sidebar";
 
 const EmployeeLayout = () => {
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div className="flex h-screen">
       <Sidebar />
-      <div style={{ marginLeft: '16rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="flex-1 flex flex-col md:ml-64">
         <Navbar /> 
-       <div style={{ flex: 1, overflow: 'auto', backgroundColor: '#f3f4f6', padding: '1rem' }}>
+       <div className="flex-1 overflow-auto bg-gray-100 p-4">
         <Outlet />
       </div>
       </div>
