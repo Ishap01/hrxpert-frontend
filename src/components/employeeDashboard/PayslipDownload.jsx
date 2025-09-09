@@ -53,51 +53,58 @@ const Payslip = () => {
     await sendNotification(); 
   };
 
-  return (
-    <div className="min-h-screen bg-teal-50 flex items-center justify-center px-3 sm:px-4">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-6 sm:p-8 space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-teal-700 text-center mb-4 sm:mb-6">Payslip Download </h2>
+ return (
+  <div className="min-h-screen bg-teal-50 flex items-center justify-center px-3 sm:px-4">
+    <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-4 sm:p-6 md:p-8 space-y-6">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-teal-700 text-center mb-3 sm:mb-4">
+        Payslip Download
+      </h2>
 
-        <div className="space-y-3 text-center">
-          
-          <button
-            onClick={handleSearch}
-            className="w-full sm:w-auto bg-teal-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold hover:bg-teal-700 transition duration-200"
-          >
-            Find Current Payslip
-          </button>
-        </div>
-
-        {salaryData && (
-          <div className="p-4 sm:p-6 rounded-lg shadow-inner space-y-3">
-            <h3 className="text-lg sm:text-xl font-semibold text-teal-800">Payslip Details</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-gray-800">
-              <p><strong>Employee ID:</strong> {salaryData.employeeId.employeeId}</p>
-              <p><strong>Basic Salary:</strong> ₹{salaryData.basicSalary}</p>
-              <p><strong>Allowances:</strong> ₹{salaryData.allowances}</p>
-              <p><strong>Deductions:</strong> ₹{salaryData.deduction}</p>
-              <p><strong>Pay Date:</strong> {new Date(salaryData.payDate).toLocaleDateString()}</p>
-            </div>
-
-            <div className="pt-3 sm:pt-4 text-center sm:text-left">
-              <button
-                onClick={generatePDF}
-                className="w-full sm:w-auto bg-teal-700 text-white px-4 sm:px-6 py-2 rounded hover:bg-teal-800 transition"
-              >
-                Download PDF
-              </button>
-            </div>
-          </div>
-        )}
-
-        {message && (
-          <div className="mt-4 sm:mt-4 text-center text-red-600 font-medium text-sm sm:text-base">
-            {message}
-          </div>
-        )}
+      <div className="text-center">
+        <button
+          onClick={handleSearch}
+          className="w-full sm:w-auto bg-teal-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold hover:bg-teal-700 transition duration-200"
+        >
+          Find Current Payslip
+        </button>
       </div>
+
+      {/* Payslip data block */}
+      {salaryData && (
+        <div className="p-4 sm:p-6 rounded-lg shadow-inner bg-gray-50 space-y-4">
+          <h3 className="text-lg sm:text-xl font-semibold text-teal-800 text-center sm:text-left">
+            Payslip Details
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-gray-800">
+            <p><strong>Employee ID:</strong> {salaryData.employeeId.employeeId}</p>
+            <p><strong>Basic Salary:</strong> ₹{salaryData.basicSalary}</p>
+            <p><strong>Allowances:</strong> ₹{salaryData.allowances}</p>
+            <p><strong>Deductions:</strong> ₹{salaryData.deduction}</p>
+            <p><strong>Pay Date:</strong> {new Date(salaryData.payDate).toLocaleDateString()}</p>
+          </div>
+
+          <div className="pt-3 sm:pt-4 text-center sm:text-left">
+            <button
+              onClick={generatePDF}
+              className="w-full sm:w-auto bg-teal-700 text-white px-4 sm:px-6 py-2 rounded hover:bg-teal-800 transition"
+            >
+              Download PDF
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Error/No data message */}
+      {message && (
+        <div className="mt-2 text-center text-red-600 font-medium text-sm sm:text-base">
+          {message}
+        </div>
+      )}
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Payslip;

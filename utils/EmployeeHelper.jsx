@@ -62,26 +62,34 @@ export const getEmployees = async (id) => {
 }
 // Action buttons
 export const EmployeeButton = ({ _id }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
-      <button className="w-full sm:w-auto px-4 py-2 bg-teal-300 text-white text-sm rounded"
-        onClick={() => navigate(`/admin-dashboard/employee/${_id}`)}>
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+      <button
+        className="w-full sm:w-auto px-4 py-2 bg-teal-300 text-white text-sm rounded"
+        onClick={() => navigate(`/admin-dashboard/employee/${_id}`)}
+      >
         View
       </button>
-      <button className="w-full sm:w-auto px-4 py-2 bg-red-400 text-white text-sm rounded"
-        onClick={() => navigate(`/admin-dashboard/employee/edit/${_id}`)}>
+      <button
+        className="w-full sm:w-auto px-4 py-2 bg-red-400 text-white text-sm rounded"
+        onClick={() => navigate(`/admin-dashboard/employee/edit/${_id}`)}
+      >
         Edit
       </button>
-      <button className="w-full sm:w-auto px-4 py-2 bg-yellow-300 text-white text-sm rounded"
-        onClick={() => navigate(`/admin-dashboard/employee/salary/${_id}`)}>
+      <button
+        className="w-full sm:w-auto px-4 py-2 bg-yellow-300 text-white text-sm rounded"
+        onClick={() => navigate(`/admin-dashboard/employee/salary/${_id}`)}
+      >
         Salary
       </button>
-      <button className="w-full sm:w-auto px-4 py-2 bg-blue-300 text-white text-sm rounded"
-        onClick={() => navigate(`/admin-dashboard/employee/leaves/${_id}`)}>
+      <button
+        className="w-full sm:w-auto px-4 py-2 bg-blue-300 text-white text-sm rounded"
+        onClick={() => navigate(`/admin-dashboard/employee/leaves/${_id}`)}
+      >
         Leave
       </button>
     </div>
-  )
-}
+  );
+};

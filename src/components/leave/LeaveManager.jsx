@@ -60,38 +60,53 @@ const filterByButton = (status) => {
 
 
   return (
-    <>
+  <>
     {filteredLeaves ? (
-    <div className="p-6">
-      <div className='text-center'>
-        <h3 className='text-2x1 font-bold'>Manage Leaves</h3>
+      <div className="p-6 max-w-5xl mx-auto">
+        <div className="text-center mb-6">
+          <h3 className="text-2xl font-bold">Manage Leaves</h3>
         </div>
-        <div className='flex justify-between items-center'>
-            <input 
-                type="text"
-                placeholder="Search By Emp ID"
-                className='px-4 py-0.5 border'
-                onChange={filterByInput}
-            />
-            <div className="flex space-x-2">
-            <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700" 
-             onClick={()=> filterByButton("Pending")}>Pending</button>
-            <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
-             onClick={()=> filterByButton("Approved")}>Approved</button>
-            <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
-             onClick={()=> filterByButton("Rejected")}>Rejected</button>
-            </div>
+
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+          <input
+            type="text"
+            placeholder="Search By Emp ID"
+            className="px-4 py-2 border rounded w-full sm:w-64"
+            onChange={filterByInput}
+          />
+
+          <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+            <button
+              className="px-4 py-2 bg-teal-600 text-white hover:bg-teal-700 rounded"
+              onClick={() => filterByButton("Pending")}
+            >
+              Pending
+            </button>
+            <button
+              className="px-4 py-2 bg-teal-600 text-white hover:bg-teal-700 rounded"
+              onClick={() => filterByButton("Approved")}
+            >
+              Approved
+            </button>
+            <button
+              className="px-4 py-2 bg-teal-600 text-white hover:bg-teal-700 rounded"
+              onClick={() => filterByButton("Rejected")}
+            >
+              Rejected
+            </button>
+          </div>
         </div>
-      <div className="mt-3">
-      <DataTable 
-        columns={columns}
-        data={filteredLeaves}
-        pagination />
+
+        <div className="mt-6">
+          <DataTable columns={columns} data={filteredLeaves} pagination />
+        </div>
       </div>
-    </div>
-    ): <div className="text-center">Loading...</div>}
-    </>
-  );
+    ) : (
+      <div className="text-center mt-10 text-gray-600">Loading...</div>
+    )}
+  </>
+);
+
 };
 
 export default LeaveManager;

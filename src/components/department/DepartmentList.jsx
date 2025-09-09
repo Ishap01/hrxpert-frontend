@@ -51,27 +51,46 @@ const DepartmentList = () => {
     },
   [])
   return (
-   <>{deptLoading?<div>Loading....</div>:
-    <div className='p-5'>
-      <div className='text-center'>
-        <h3 className='text-2xl font-bold'>Manage Departments</h3>
-      </div>
-      <div className='flex justify-between items-center'>
-        <input type="text" placeholder='Search By Dep Name' className='px-4 py-0.5' onChange={filterDepartments}/>
-        <Link to="/admin-dashboard/add-department" className='px-4 py-1 bg-blue-400 rounded text-white'>Add New Department</Link>
-        
+  <>
+    {deptLoading ? (
+      <div className="text-center mt-10 text-gray-600">Loading...</div>
+    ) : (
+      <div className="p-4 sm:p-6">
+        <div className="text-center mb-6">
+          <h3 className="text-2xl font-bold text-gray-800">Manage Departments</h3>
+        </div>
 
+        {/* Search and Add button section */}
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
+          <input
+            type="text"
+            placeholder="Search by department name"
+            className="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={filterDepartments}
+          />
+          <Link
+            to="/admin-dashboard/add-department"
+            className="inline-block text-center px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+          >
+            Add New Department
+          </Link>
+        </div>
+
+        {/* Table section */}
+        <div className="mt-6 overflow-x-auto rounded-md">
+          <DataTable
+            columns={columns}
+            data={filteredDept}
+            pagination
+            responsive
+            highlightOnHover
+          />
+        </div>
       </div>
-      <div className='mt-5'>
-         <DataTable columns={columns}
-      data={filteredDept}
-      pagination
-      />
-      </div>
-     
-    </div>
-    }</>
-  )
+    )}
+  </>
+);
+
 }
 
 export default DepartmentList

@@ -66,56 +66,61 @@ const AttendanceManager = () => {
     setShowReport(!showReport);
   };
 
-  return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-xl font-bold mb-4 text-center">Attendance Management</h2>
+ return (
+  <div className="p-6 bg-gray-100 min-h-screen">
+    <h2 className="text-xl font-bold mb-6 text-center">Attendance Management</h2>
 
-      <div className="mb-4 flex items-center gap-4">
-        <label className="font-medium">Select Date:</label>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="p-2 border rounded"
+    <div className="mb-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <label className="font-medium" htmlFor="attendance-date">
+        Select Date:
+      </label>
+      <input
+        id="attendance-date"
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        className="p-2 border rounded"
+      />
+      <button
+        onClick={toggleReport}
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      >
+        {showReport ? "Hide Report" : "View Attendance Report"}
+      </button>
+    </div>
+
+    {message && <p className="mb-4 text-green-600 font-medium text-center">{message}</p>}
+
+    {!showReport ? (
+      employees.length > 0 ? (
+        <AttendanceTable
+          headers={["S No.", "Employee ID", "Name", "Department", "Action"]}
+          rows={employees}
+          onMark={handleMark}
+          markedStatus={markedStatus}
         />
-        <button
-          onClick={toggleReport}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          {showReport ? "Hide Report" : "View Attendance Report"}
-        </button>
-      </div>
-
-      {message && <p className="mb-4 text-green-600 font-medium">{message}</p>}
-
-      {!showReport ? (
-        employees.length > 0 ? (
+      ) : (
+        <p className="text-center">No employees available to mark attendance.</p>
+      )
+    ) : (
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold mb-4 text-center">
+          Attendance Report for {date}
+        </h3>
+        {loadingReport ? (
+          <p className="text-center">Loading...</p>
+        ) : reportData.length > 0 ? (
           <AttendanceTable
-            headers={["S No.", "Employee ID", "Name", "Department", "Action"]}
-            rows={employees}
-            onMark={handleMark}
-            markedStatus={markedStatus}
+            headers={["S No.", "Employee ID", "Name", "Department", "Status"]}
+            rows={reportData}
           />
         ) : (
-          <p>No employees available to mark attendance.</p>
-        )
-      ) : (
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-2">Attendance Report for {date}</h3>
-          {loadingReport ? (
-            <p>Loading...</p>
-          ) : reportData.length > 0 ? (
-            <AttendanceTable
-              headers={["S No.", "Employee ID", "Name", "Department", "Status"]}
-              rows={reportData}
-            />
-          ) : (
-            <p>No attendance records found for this date.</p>
-          )}
-        </div>
-      )}
-    </div>
-  );
+          <p className="text-center">No attendance records found for this date.</p>
+        )}
+      </div>
+    )}
+  </div>
+);
 };
 
 export default AttendanceManager;

@@ -50,78 +50,68 @@ const Add = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Add New Employee</h2>
+    <div className="max-w-4xl mx-auto mt-10 bg-white p-6 sm:p-8 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Add New Employee</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Name
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
             <input
               type="text"
               name="name"
               onChange={handleChange}
               placeholder="Insert Name"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               name="email"
               onChange={handleChange}
               placeholder="Insert Email"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Employee ID */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Employee ID
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Employee ID</label>
             <input
               type="text"
               name="employeeId"
               onChange={handleChange}
               placeholder="Employee ID"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* DOB */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Date of Birth
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
             <input
               type="date"
               name="dob"
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Gender */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Gender
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Gender</label>
             <select
               name="gender"
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             >
               <option value="">Select Gender</option>
@@ -133,13 +123,11 @@ const Add = () => {
 
           {/* Marital Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Marital Status
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Marital Status</label>
             <select
               name="maritalStatus"
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             >
               <option value="">Select Status</option>
@@ -150,28 +138,24 @@ const Add = () => {
 
           {/* Designation */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Designation
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Designation</label>
             <input
               type="text"
               name="designation"
               onChange={handleChange}
               placeholder="Designation"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Department */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Department
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Department</label>
             <select
               name="department"
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             >
               <option value="">Select Department</option>
@@ -185,63 +169,54 @@ const Add = () => {
 
           {/* Salary */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Salary
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Salary</label>
             <input
               type="number"
               name="salary"
               onChange={handleChange}
               placeholder="Salary"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               name="password"
               onChange={handleChange}
               placeholder="*******"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Role */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Role
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Role</label>
             <select
               name="role"
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             >
               <option value="">Select Role</option>
               <option value="Admin">Admin</option>
-
               <option value="Employee">Employee</option>
             </select>
           </div>
 
           {/* Image */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Upload Image
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Upload Image</label>
             <input
               type="file"
               name="image"
               onChange={handleChange}
               accept="image/*"
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:outline-none"
               required
             />
           </div>
@@ -249,7 +224,7 @@ const Add = () => {
 
         <button
           type="submit"
-          className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md"
+          className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md transition-colors"
         >
           Add Employee
         </button>

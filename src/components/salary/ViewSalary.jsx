@@ -33,63 +33,108 @@ const ViewSalary = () => {
     setFilteredSalaries(filterRecords)
 }
   return (
-    <>
-    {filteredSalaries === null?(
-        <div>Loading...</div>
+  <>
+    {filteredSalaries === null ? (
+      <div className="text-center py-10">Loading...</div>
+    ) : (
+      <div className="p-3 sm:p-5">
+        <div className="text-center mb-4">
+          <h2 className="text-xl sm:text-2xl font-bold">Salary History</h2>
+        </div>
 
-    ):(
-        <div className='overflow-x-auto p-3 sm:p-5'>
-            <div className='text-center mb-4'>
-                <h2 className='text-xl sm:text-2xl font-bold'>
-                   Salary History
-                </h2>
+        <div className="flex justify-end mb-4">
+          <input
+            type="text"
+            placeholder="Search By Emp ID"
+            className="border px-3 py-2 rounded-md border-gray-300 w-full sm:w-64 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-teal-400"
+            onChange={filterSalaries}
+          />
+        </div>
 
-            </div>
-            <div className='flex justify-end my-3'>
-                <input type="text" placeholder='Search By Emp ID' 
-                className='border px-2 py-1 rounded-md border-gray-300 w-full sm:w-64 text-sm sm:text-base'
-                onChange={filterSalaries}
-                />
-
-                
-
-            </div>
-
-    {filteredSalaries.length > 0 ?(
-       <table className='w-full text-xs sm:text-sm text-left text-gray-500 border-collapse'>
-        
-        <thead className='text-[10px] sm:text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
-            <tr>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>SNO</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Emp ID</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Salary</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Allowance</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Deduction</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Total</th>
-                <th className='px-2 sm:px-6 py-2 sm:py-3'>Pay Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {filteredSalaries.map((salary)=>(
-                <tr key={salary.id} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-                    <td className='px-2 sm:px-6 py-2 sm:py-3'>{sno++}</td>
-                     <td className='px-2 sm:px-6 py-2 sm:py-3'>{salary.employeeId.employeeId}</td>
-                      <td className='px-2 sm:px-6 py-2 sm:py-3'>{salary.basicSalary}</td>
-                       <td className='px-2 sm:px-6 py-2 sm:py-3'>{salary.allowances}</td>
-                        <td className='px-2 sm:px-6 py-2 sm:py-3'>{salary.deduction}</td>
-                         <td className='px-2 sm:px-6 py-2 sm:py-3'>{salary.netSalary}</td>
-                          <td className='px-2 sm:px-6 py-2 sm:py-3'>{new Date(salary.payDate).toLocaleDateString()}</td>
+        {filteredSalaries.length > 0 ? (
+          <>
+            {/* Desktop Table */}
+            <table className="hidden sm:table min-w-full text-sm text-left text-gray-700 border-collapse">
+              <thead className="bg-gray-50 border border-gray-200 sticky top-0 z-10">
+                <tr>
+                  <th className="px-6 py-3">SNO</th>
+                  <th className="px-6 py-3">Emp ID</th>
+                  <th className="px-6 py-3">Salary</th>
+                  <th className="px-6 py-3">Allowance</th>
+                  <th className="px-6 py-3">Deduction</th>
+                  <th className="px-6 py-3">Total</th>
+                  <th className="px-6 py-3">Pay Date</th>
                 </tr>
-            ))}
-        </tbody>
-       </table>
-    ):<div>No Records</div>}
-    </div>
+              </thead>
+              <tbody>
+                {filteredSalaries.map((salary, index) => (
+                  <tr
+                    key={salary.id}
+                    className={`bg-white border-b ${
+                      index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                    }`}
+                  >
+                    <td className="px-6 py-3">{index + 1}</td>
+                    <td className="px-6 py-3">{salary.employeeId.employeeId}</td>
+                    <td className="px-6 py-3">{salary.basicSalary}</td>
+                    <td className="px-6 py-3">{salary.allowances}</td>
+                    <td className="px-6 py-3">{salary.deduction}</td>
+                    <td className="px-6 py-3">{salary.netSalary}</td>
+                    <td className="px-6 py-3">
+                      {new Date(salary.payDate).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Mobile Vertical Table */}
+            <div className="sm:hidden space-y-4">
+              {filteredSalaries.map((salary, index) => (
+                <div
+                  key={salary.id}
+                  className="bg-white shadow rounded-md p-4 border border-gray-200"
+                >
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">SNO:</span>
+                    <span>{index + 1}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">Emp ID:</span>
+                    <span>{salary.employeeId.employeeId}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">Salary:</span>
+                    <span>{salary.basicSalary}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">Allowance:</span>
+                    <span>{salary.allowances}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">Deduction:</span>
+                    <span>{salary.deduction}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold">Total:</span>
+                    <span>{salary.netSalary}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Pay Date:</span>
+                    <span>{new Date(salary.payDate).toLocaleDateString()}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="text-center py-6 text-gray-600">No Records</div>
+        )}
+      </div>
     )}
-      
-    
-    </>
-  )
+  </>
+);
+
 }
 
 export default ViewSalary
