@@ -3,16 +3,13 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-//import signup_img  from '../assets/signup_img.png'
-//import img11  from '../assets/img11.png'
-//import hr22 from '../assets/hr22.png'
-import hr11 from '../assets/hr11.png'
+import hr11 from '../assets/hr11.png';
 import { useState } from 'react';
-//import hr33 from '../assets/hr33.png'
-//import img22  from '../assets/img22.png'
+
 const Register = () => {
   const navigate = useNavigate();
-  const[error, setError] = useState("")
+  const [error, setError] = useState("");
+
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email().required("Email is required"),
@@ -27,8 +24,8 @@ const Register = () => {
       resetForm();
       navigate('/login');
     } catch (err) {
-      if(err.response && err.response.status ===400){
-        setError(err.response.data.message); 
+      if (err.response && err.response.status === 400) {
+        setError(err.response.data.message);
       }
       alert("Registration failed. Try again.");
     }
@@ -37,8 +34,8 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-teal-400 to-cyan-300 px-4 py-6 sm:py-8">
       <div className="bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 w-full max-w-5xl overflow-hidden">
-        
-        {/* Left Side - Illustration or Message */}
+
+        {/* Left Side - Desktop only */}
         <div className="hidden md:flex items-center justify-center bg-gradient-to-tr from-teal-500 to-cyan-400 p-6 md:p-10">
           <div className="text-white text-center space-y-3 md:space-y-4">
             <h2 className="text-2xl md:text-4xl font-bold">Welcome to HR Xpert</h2>
@@ -48,8 +45,14 @@ const Register = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="p-6 sm:p-8 md:p-12">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-teal-600 mb-6">Create Your Account</h2>
+        <div className="w-full p-6 sm:p-8 md:p-12">
+          {/* Mobile-only heading */}
+          <div className="block md:hidden text-center mb-6">
+            <h2 className="text-2xl font-bold text-teal-600">Welcome to HR Xpert</h2>
+            <p className="text-sm text-gray-700">Join us and simplify your employee management!</p>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-teal-600 mb-6 md:mb-6">Create Your Account</h2>
 
           <Formik
             initialValues={{ name: '', email: '', password: '', role: '' }}
@@ -57,8 +60,10 @@ const Register = () => {
             onSubmit={handleSubmit}
           >
             <Form className="space-y-5">
+              {/* Error */}
+              {error && <p className="text-red-600 text-sm">{error}</p>}
+
               {/* Name */}
-                {error && <p style={{ color: "red" }}>{error}</p>}
               <div className="relative">
                 <UserIcon className="h-5 w-5 absolute left-3 top-3.5 text-gray-400" />
                 <Field
@@ -102,7 +107,6 @@ const Register = () => {
                 >
                   <option value="">Select Role</option>
                   <option value="Employee">Employee</option>
-                 
                   <option value="Admin">Admin</option>
                 </Field>
                 <ErrorMessage name="role" component="div" className="text-red-500 text-sm mt-1" />
