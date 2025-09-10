@@ -12,7 +12,7 @@ import {
 
 const AdminSidebar = ({ closeSidebar }) => {
   return (
-    <div className="flex flex-col bg-gray-800 text-white h-screen w-64">
+    <div className="fixed top-0 left-0 flex flex-col bg-gray-800 text-white h-screen w-64">
       {/* Header */}
       <div className="bg-teal-400 h-12 flex items-center justify-between px-4">
         <h3 className="text-2xl font-bold">HRXpert</h3>
